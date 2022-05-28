@@ -35,7 +35,8 @@
 // 6. 出版社も表示してみよう！（データ構造はconsole.logで確認！！）
 
 // $.get() を使う[開始]
-$.get('https://www.googleapis.com/books/v1/volumes?q=JavaScript', function (data) {
+$.get('https://www.googleapis.com/books/v1/volumes?q=jquery', 
+ function (data) {
   console.log(data);
   const items = data.items
   for(let i = 0; i < items.length; i++) {
@@ -44,7 +45,10 @@ $.get('https://www.googleapis.com/books/v1/volumes?q=JavaScript', function (data
     $('#content').append(`<ul><li>${title}</li></ul>`)
   }
 });
-// $.get() を使う[終了]
+$.get() を使う[終了]
+
+
+
 
 </script>
 </body>
