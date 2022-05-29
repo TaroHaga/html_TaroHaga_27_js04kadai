@@ -44,7 +44,8 @@ const word = $("#keyword").val();
 console.log(word)
  //"jquery"をwordの文字に変換（slack参考）
 
- url = url.replace("jquery", word) //"jquery"をwordの文字に変換＊菅野さん参照
+ url = url.replace("jquery", word) //"jquery"をwordの文字に変換
+//＊slack菅野さん参照
 
 $.get(url, function(data){
   $("#content").empty(); 
