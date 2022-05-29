@@ -13,7 +13,7 @@
   <header>
     <h1>GoogleBooks検索</h1>
     <p>
-      <input type="text" id="keyword" value="レスポンシブWeb">
+      <input type="text" id="keyword" value="検索">
       <button id="readbook">データ読み込み</button>
     </p>
   </header>
@@ -35,16 +35,44 @@
 // 6. 出版社も表示してみよう！（データ構造はconsole.logで確認！！）
 
 // $.get() を使う[開始]
-$.get('https://www.googleapis.com/books/v1/volumes?q=jquery', 
- function (data) {
+
+
+$("#readbook").on("click", function(){
+
+let url = "https://www.googleapis.com/books/v1/volumes?q=jquery"
+const word = $("#keyword").val();
+console.log(word)
+ //"jquery"をwordの文字に変換（slack参考）
+
+ url = url.replace("jquery", word) //"jquery"をwordの文字に変換＊菅野さん参照
+
+$.get(url, function(data){
+  $("#content").empty(); 
   console.log(data);
+  
   const items = data.items
-  for(let i = 0; i < items.length; i++) {
-    console.log(items[i]);
+  
+  for (let i = 0; i < items.length; i++){
+    console.log(items)
     const title = items[i].volumeInfo.title;
-    $('#content').append(`<ul><li>${title}</li></ul>`)
+    const publisher = items[i].volumeInfo.publisher;
+    const result = `<ul><li id="${[i]}">${title}</li><li>${publisher}</li></ul>`
+    $("#content").append(result)
   }
-});
+})
+})
+
+// $.get('https://www.googleapis.com/books/v1/volumes?q=jquery',
+//  function (data) {
+//   console.log(data);
+//   const items = data.items
+//   for(let i = 0; i < items.length; i++) {
+//     console.log(items[i]);
+//     const title = items[i].volumeInfo.title;
+//     $('#content').append(`<ul><li>${title}</li></ul>`)
+//   }
+// });
+
 //$.get() を使う[終了]
 
 
